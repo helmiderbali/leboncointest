@@ -8,6 +8,10 @@ import com.example.domain.model.Advert
 import com.example.domain.model.Response
 import com.example.domain.model.ResponseStatus
 import com.example.domain.repository.AdvertRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class AdvertRepositoryImpl @Inject constructor(
@@ -24,7 +28,9 @@ class AdvertRepositoryImpl @Inject constructor(
                 val data = response.data
 
                 data?.let {
+                    CoroutineScope(Dispatchers.IO).launch {
                         leboncoinLocalDataSource.saveAdverts(it)
+                    }
                 }
 
                 data?.forEach { advert ->
@@ -35,14 +41,19 @@ class AdvertRepositoryImpl @Inject constructor(
             }
             Status.FAILED -> {
 
-                val data = leboncoinLocalDataSource.getAdvertsFromDB()
-                if (data.isNotEmpty()) {
-                    data.forEach { advert ->
-                        result.add(AdvertMapper.fromEntity(advert))
-                    }
-                }
+                val dbResult =
+                    withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+                        val data = leboncoinLocalDataSource.getAdvertsFromDB()
+                        if (data.isNotEmpty()) {
+                            data.forEach { advert ->
+                                result.add(AdvertMapper.fromEntity(advert))
+                            }
+                        }
 
-                Response(ResponseStatus.ERROR, result)
+                        result
+                    }
+
+                Response(ResponseStatus.ERROR, dbResult)
             }
         }
     }

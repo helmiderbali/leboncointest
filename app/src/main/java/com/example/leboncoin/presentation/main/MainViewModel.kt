@@ -8,20 +8,13 @@ import com.example.domain.model.Status
 import com.example.domain.useCase.GetAdvertUseCase
 import com.example.leboncoin.presentation.model.MainUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getAdvertUseCase: GetAdvertUseCase
 ) : ViewModel() {
-
-    private val backgroundScope: CoroutineContext =
-        CoroutineScope(Dispatchers.IO).coroutineContext + viewModelScope.coroutineContext
-
 
     private val _uiState = MutableLiveData<MainUiState<List<Advert>>>()
     val uiState: MutableLiveData<MainUiState<List<Advert>>>
@@ -32,7 +25,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun getAdverts() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch() {
             getAdvertUseCase.invoke().let {
                 when (it.responseState.status) {
                     Status.SUCCESS -> _uiState.postValue(MainUiState(advertItems = it.data))
