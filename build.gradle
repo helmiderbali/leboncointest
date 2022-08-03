@@ -1,0 +1,130 @@
+buildscript {
+
+
+
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.43.1'
+    }
+}
+
+plugins {
+    id 'com.android.application' version '7.2.1' apply false
+    id 'com.android.library' version '7.2.1' apply false
+    id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
+    id 'com.google.dagger.hilt.android' version '2.43.1' apply false
+}
+
+ext {
+
+    // global variables
+    kotlin_version = '1.6.10'
+
+    // local variables (use def)
+    def androidx_test_version = '1.4.0'
+    def arch_version = '2.1.0'
+    def appcompat_version = '1.4.1'
+    def coroutines_android_version = '1.5.2'
+    def gson_version = '2.9.0'
+    def junit_version = '4.13.2'
+    def junitktx = '4.13.2'
+    def coretesting_version = '2.1.0'
+    def material_version = '1.5.0'
+    def mockito_version = "4.3.1"
+    def retrofit_gson_version = '2.9.0'
+    def retrofit_version = '2.9.0'
+    def serial_converter_version = '0.8.0'
+    def room_version = '2.4.1'
+    def work_version = '2.7.1'
+    def mockk_version = '1.12.5'
+    def core_ktx_version = '1.8.0'
+    def lifecycle_version = '2.5.1'
+    def picasso_version = '2.8'
+    def hilt_version = "2.43.1"
+    def coroutine_version="1.6.0"
+
+
+    libraries = [
+
+            "androidx.core:core-ktx:$core_ktx_version",
+            "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
+            "androidx.legacy:legacy-support-v4:1.0.0",
+            'androidx.activity:activity-ktx:1.5.1',
+
+            //HILT
+           "com.google.dagger:hilt-android:$hilt_version",
+
+            // Coroutines
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_android_version",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_android_version",
+
+            // Android UI and appcompat
+            "androidx.appcompat:appcompat:$appcompat_version",
+            "com.google.android.material:material:$material_version",
+
+            // ViewModel and LiveData
+            "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
+            "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+
+            "androidx.work:work-runtime-ktx:$work_version",
+
+            // Room for database
+            "androidx.room:room-ktx:$room_version",
+            "androidx.room:room-runtime:$room_version",
+
+            // network & serialization
+            "com.google.code.gson:gson:$gson_version",
+            "com.squareup.retrofit2:converter-gson:$retrofit_gson_version",
+            "com.squareup.retrofit2:retrofit:$retrofit_version",
+            "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$serial_converter_version",
+
+            //logging
+            "com.squareup.picasso:picasso:$picasso_version",
+            "com.squareup.okhttp3:logging-interceptor:4.10.0",
+            "com.facebook.stetho:stetho:1.6.0",
+            "com.facebook.stetho:stetho-okhttp3:1.6.0",
+    ]
+
+    librariesKaptHilt = [
+            "com.google.dagger:hilt-compiler:$hilt_version"
+    ]
+    librariesKaptRoom = [
+            "androidx.room:room-compiler:$room_version",
+    ]
+    librariesDebug = [
+    ]
+
+    testLibraries = [
+            "junit:junit:$junit_version",
+            "androidx.test.ext:junit-ktx:$junitktx",
+
+            "androidx.arch.core:core-testing:$coretesting_version",
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:",
+
+            // Coroutines testing
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_android_version",
+
+            // mocks
+            "io.mockk:mockk:$mockk_version",
+
+            //  Architecture Components testing libraries
+            "androidx.arch.core:core-testing:$arch_version"
+    ]
+
+    androidTestLibraries = [
+            "junit:junit:$junit_version",
+            "androidx.test:runner:$androidx_test_version",
+            "androidx.test:rules:$androidx_test_version",
+
+            //  Architecture Components testing libraries
+            "androidx.arch.core:core-testing:$arch_version",
+            "androidx.work:work-testing:$work_version",
+
+            // Coroutines testing
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_android_version",
+    ]
+}
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

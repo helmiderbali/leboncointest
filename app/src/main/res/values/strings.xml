@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">leboncoin</string>
+    <string name="no_data_please_swipe_to_retry">No data, please swipe to retry!</string>
+</resources>
