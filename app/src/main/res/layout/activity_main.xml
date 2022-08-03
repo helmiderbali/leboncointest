@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F8FD"
     tools:context=".MainActivity">
 
     <com.google.android.material.textview.MaterialTextView
@@ -37,6 +36,4 @@
             tools:listitem="@layout/single_item" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,7 +28,7 @@ ext {
     def coroutines_android_version = '1.5.2'
     def gson_version = '2.9.0'
     def junit_version = '4.13.2'
-    def junitktx = '4.13.2'
+    def junitktx = '1.1.2'
     def coretesting_version = '2.1.0'
     def material_version = '1.5.0'
     def mockito_version = "4.3.1"

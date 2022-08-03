@@ -1,18 +1,13 @@
 package com.example.leboncoin.presentation.main
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.Advert
-import com.example.leboncoin.R
 import com.example.leboncoin.databinding.ActivityMainBinding
 import com.example.leboncoin.presentation.model.MainUiState
 import com.squareup.picasso.Picasso
@@ -26,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
-    private var rvAdapter: RvAdapter? = null
+    private var rvAdapter: AdvertListAdapter? = null
 
     @Inject
     lateinit var picasso: Picasso
@@ -48,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
         binding.rvList.layoutManager = layoutManager
-        rvAdapter = RvAdapter(listOf(), picasso)
+        rvAdapter = AdvertListAdapter(listOf(), picasso)
         binding.rvList.adapter = rvAdapter
     }
 

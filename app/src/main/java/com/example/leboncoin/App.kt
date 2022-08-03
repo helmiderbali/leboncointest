@@ -8,6 +8,8 @@ import dagger.hilt.android.HiltAndroidApp
 class App  : Application(){
     override fun onCreate() {
         super.onCreate()
-        Stetho.initializeWithDefaults(this)
+        if (BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this)
+        }
     }
 }

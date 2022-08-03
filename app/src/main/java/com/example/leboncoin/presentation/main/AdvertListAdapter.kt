@@ -1,24 +1,19 @@
 package com.example.leboncoin.presentation.main
 
 
-import android.app.Application
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.Advert
-import com.example.leboncoin.App
 import com.example.leboncoin.R
 import com.example.leboncoin.databinding.SingleItemBinding
-import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
-import dagger.hilt.EntryPoint
-import dagger.hilt.android.EntryPointAccessors
 import javax.inject.Inject
 
-class RvAdapter @Inject constructor(
+class AdvertListAdapter @Inject constructor(
     var advertList: List<Advert>,
     var picasso: Picasso
-) : RecyclerView.Adapter<RvAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<AdvertListAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: SingleItemBinding) : RecyclerView.ViewHolder(binding.root)
 
